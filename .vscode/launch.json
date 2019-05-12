@@ -13,6 +13,16 @@
                 // {docker上のdocument root}:{ローカルのdocument root}
                 "/var/www/html":"${workspaceRoot}/step6-php5-xdebug/data/html"
             }
+        },       
+        {
+            "name": "Listen for XDebug step7",
+            "type": "php",
+            "request": "launch",
+            "port": 9000,
+            "pathMappings": {
+                // {docker上のdocument root}:{ローカルのdocument root}
+                "/var/www/html":"${workspaceRoot}/step7-php5-xdebug-redis/data/html"
+            }
         },
         {
             "name": "Launch currently open script",
