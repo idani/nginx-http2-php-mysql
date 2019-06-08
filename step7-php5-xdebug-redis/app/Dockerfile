@@ -18,5 +18,3 @@ RUN set -eux && \
   docker-php-ext-install pdo_mysql mysqli mbstring && \
   docker-php-ext-enable redis xdebug
 
-# Config
-COPY ./xdebug.ini /usr/local/etc/php/conf.d/
