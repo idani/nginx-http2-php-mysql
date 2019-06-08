@@ -19,7 +19,7 @@ services:
       - db
     volumes:
       - ./data/html:/var/www/html
-
+      - ./app/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
   db:
     image: mysql:5.7.19
     env_file: .env
