@@ -2,12 +2,12 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Step.7 nginx + PHP5 + MySQL + xdebug + redis</title>
+    <title>Step.8 nginx + PHP5 + MySQL + xdebug + redis + Mail</title>
     <link rel="stylesheet" href="/main.css">
 </head>
 <body>
     <div class="container">
-        <h1 class="title">nginx + PHP5 + MySQL + xdebug + redis</h1>
+        <h1 class="title">nginx + PHP5 + MySQL + xdebug + redis + Mail</h1>
         <img src="/img.jpg" alt="" class="thumbnail" />
 
         <?php
@@ -65,7 +65,10 @@
         echo '</pre>';
 
 
+        //////////////////////////////////////////////////////
         // メール
+        //////////////////////////////////////////////////////
+        // https://github.com/PHPMailer/PHPMailer
         use PHPMailer\PHPMailer\PHPMailer;
         use PHPMailer\PHPMailer\Exception;
         
@@ -77,6 +80,9 @@
         
         try {
             //Server settings
+            echo '<pre class="log">';
+            echo 'SMTPでメール配信' . PHP_EOL;
+
             $mail->SMTPDebug = 2;                                       // Enable verbose debug output
             $mail->isSMTP();                                            // Set mailer to use SMTP
             $mail->Host       = 'maildev';  // Specify main and backup SMTP servers
@@ -96,20 +102,35 @@
             $mail->addBCC('bcc@example.com');
         
             // Attachments
-            $mail->addAttachment('/var/www/html/index.php');         // Add attachments
+            // $mail->addAttachment('/var/www/html/index.php');         // Add attachments
             $mail->addAttachment('/var/www/html/img.jpg', 'img.jpg');    // Optional name
         
-            // Content
-            $mail->isHTML(true);                                  // Set email format to HTML
-            $mail->Subject = 'Here is the subject';
-            $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-            $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+            // // Content
+            // $mail->isHTML(true);                                  // Set email format to HTML
+            // $mail->Subject = 'Here is the subject';
+            // $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
+            // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+            $mail->Subject = mb_encode_mimeheader('日本語サブジェクト(SMTP)');
+            $mail->Encoding = '7bit';
+            $mail->CharSet ='ISO-2022-JP';
+
+$mailBody =<<< EOL
+日本語のメールのテストです。
+
+改行も問題ないと思います。
+
+SMTPで配信しています。
+EOL;
+
+            $mail->Body = mb_convert_encoding($mailBody, "JIS", "UTF-8");
         
             $mail->send();
             echo 'Message has been sent';
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
+        echo '</pre>';
 
 
         phpinfo();
