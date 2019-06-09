@@ -132,6 +132,41 @@ EOL;
         }
         echo '</pre>';
 
+        echo '<pre class="log">';
+        echo 'sendmailでメール配信' . PHP_EOL;
+        $mail->isSendmail();
+            //Recipients
+            $mail->setFrom('from@example.com', 'Mailer');
+            $mail->addAddress('sendmail@example.net', 'sendmail User');     // Add a recipient
+            $mail->addReplyTo('info@example.com', 'Information');
+        
+            // Attachments
+            // $mail->addAttachment('/var/www/html/index.php');         // Add attachments
+            // $mail->addAttachment('/var/www/html/img.jpg', 'img.jpg');    // Optional name
+        
+            // // Content
+            // $mail->isHTML(true);                                  // Set email format to HTML
+            // $mail->Subject = 'Here is the subject';
+            // $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
+            // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+            $mail->Subject = mb_encode_mimeheader('日本語サブジェクト(sendmail)');
+            $mail->Encoding = '7bit';
+            $mail->CharSet ='ISO-2022-JP';
+
+$mailBody =<<< EOL
+日本語のメールのテストです。
+
+改行も問題ないと思います。
+
+sendmailで配信しています。
+EOL;
+
+            $mail->Body = mb_convert_encoding($mailBody, "JIS", "UTF-8");
+        
+            $mail->send();
+            echo 'Message has been sent';
+        echo '</pre>';
 
         phpinfo();
         ?>
