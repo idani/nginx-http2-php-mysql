@@ -40,5 +40,11 @@ services:
     ports:
       - "1025:25"
       - "8025:80"
+  composer:
+    restart: 'no'
+    image: composer/composer
+    command: install
+    volumes:
+      - ./data/html:/app
 volumes:
   db-data:
