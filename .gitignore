@@ -4,3 +4,4 @@
 
 # Module directory
 .terraform/
+step8-php5-xdebug-redis-mail/data/html/vendor
