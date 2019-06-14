@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Step.9 nginx + PHP5 + MySQL + xdebug + redis + Mail2</title>
+    <title>Step.8.1 nginx + PHP5 + MySQL + xdebug + redis + Mail2</title>
     <link rel="stylesheet" href="/main.css">
 </head>
 <body>
