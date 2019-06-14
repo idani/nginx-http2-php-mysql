@@ -2,12 +2,12 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Step.8 nginx + PHP5 + MySQL + xdebug + redis + Mail</title>
+    <title>Step.9 nginx + PHP5 + MySQL + xdebug + redis + Mail2</title>
     <link rel="stylesheet" href="/main.css">
 </head>
 <body>
     <div class="container">
-        <h1 class="title">nginx + PHP5 + MySQL + xdebug + redis + Mail</h1>
+        <h1 class="title">nginx + PHP5 + MySQL + xdebug + redis + Mail2</h1>
         <img src="/img.jpg" alt="" class="thumbnail" />
 
         <?php
@@ -94,8 +94,8 @@
             $mail->Port       = 25;                                    // TCP port to connect to
         
             //Recipients
-            $mail->setFrom('from@example.com', 'Mailer');
-            $mail->addAddress('joe@example.net', 'Joe User');     // Add a recipient
+            $mail->setFrom('from@example.com', mb_encode_mimeheader('日本語送信者名'));
+            $mail->addAddress('joe@example.net', mb_encode_mimeheader('日本語受信者名'));     // Add a recipient
             $mail->addAddress('ellen@example.com');               // Name is optional
             $mail->addReplyTo('info@example.com', 'Information');
             $mail->addCC('cc@example.com');
@@ -136,8 +136,8 @@ EOL;
         echo 'sendmailでメール配信' . PHP_EOL;
         $mail->isSendmail();
             //Recipients
-            $mail->setFrom('from@example.com', 'Mailer');
-            $mail->addAddress('sendmail@example.net', 'sendmail User');     // Add a recipient
+            $mail->setFrom('from@example.com', mb_encode_mimeheader('日本語送信者名'));
+            $mail->addAddress('joe@example.net', mb_encode_mimeheader('日本語受信者名'));     // Add a recipient
             $mail->addReplyTo('info@example.com', 'Information');
         
             // Attachments
