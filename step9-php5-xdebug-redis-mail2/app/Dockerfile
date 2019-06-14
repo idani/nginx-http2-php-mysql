@@ -13,6 +13,7 @@ RUN set -eux && \
     tzdata && \
   cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && \
   echo ${TZ} > /etc/timezone && \
+  apk add --no-cache ssmtp && \
   pecl install redis xdebug-2.5.5 && \
   apk del .build-dependencies && \
   docker-php-ext-install pdo_mysql mysqli mbstring && \
