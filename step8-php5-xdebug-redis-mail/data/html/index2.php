@@ -2,12 +2,12 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Step.8.1 nginx + PHP5 + MySQL + xdebug + redis + Mail2</title>
+    <title>Step.8 nginx + PHP5 + MySQL + xdebug + redis + Mail その２</title>
     <link rel="stylesheet" href="/main.css">
 </head>
 <body>
     <div class="container">
-        <h1 class="title">nginx + PHP5 + MySQL + xdebug + redis + Mail2</h1>
+        <h1 class="title">nginx + PHP5 + MySQL + xdebug + redis + Mail その２</h1>
         <img src="/img.jpg" alt="" class="thumbnail" />
 
         <?php
@@ -94,29 +94,20 @@
             $mail->Port       = 25;                                    // TCP port to connect to
         
             //Recipients
-            $mail->setFrom('from@example.com', mb_encode_mimeheader('日本語送信者名'));
-            $mail->addAddress('joe@example.net', mb_encode_mimeheader('日本語受信者名'));     // Add a recipient
-            $mail->addAddress('ellen@example.com');               // Name is optional
-            $mail->addReplyTo('info@example.com', 'Information');
-            $mail->addCC('cc@example.com');
-            $mail->addBCC('bcc@example.com');
-        
+            $mail->setFrom('from@example.com', 'Mailer');
+            $mail->addAddress('smtp@example.net', 'Smtp User');     // Add a recipient
+
             // Attachments
             // $mail->addAttachment('/var/www/html/index.php');         // Add attachments
             $mail->addAttachment('/var/www/html/img.jpg', 'img.jpg');    // Optional name
-        
-            // // Content
-            // $mail->isHTML(true);                                  // Set email format to HTML
-            // $mail->Subject = 'Here is the subject';
-            // $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-            // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+    
 
-            $mail->Subject = mb_encode_mimeheader('日本語サブジェクト(SMTP)');
+            $mail->Subject = mb_encode_mimeheader('日本語サブジェクト(SMTP) その２');
             $mail->Encoding = '7bit';
             $mail->CharSet ='ISO-2022-JP';
 
 $mailBody =<<< EOL
-日本語のメールのテストです。
+日本語のメールのテスト その２です。
 
 改行も問題ないと思います。
 
@@ -135,29 +126,17 @@ EOL;
         $mail2 = new PHPMailer;
         echo '<pre class="log">';
         echo 'sendmailでメール配信' . PHP_EOL;
-        $mail2->SMTPDebug = 2;
         $mail2->isSendmail();
             //Recipients
-            $mail2->setFrom('from@example.com', mb_encode_mimeheader('日本語送信者名'));
-            $mail2->addAddress('joe@example.net', mb_encode_mimeheader('日本語受信者名'));     // Add a recipient
-            $mail2->addReplyTo('info@example.com', 'Information');
-        
-            // Attachments
-            // $mail2->addAttachment('/var/www/html/index.php');         // Add attachments
-            // $mail2->addAttachment('/var/www/html/img.jpg', 'img.jpg');    // Optional name
-        
-            // // Content
-            // $mail2->isHTML(true);                                  // Set email format to HTML
-            // $mail2->Subject = 'Here is the subject';
-            // $mail2->Body    = 'This is the HTML message body <b>in bold!</b>';
-            // $mail2->AltBody = 'This is the body in plain text for non-HTML mail clients';
+            $mail2->setFrom('from@example.com', 'Mailer');
+            $mail2->addAddress('sendmail@example.net', 'Sendmail User');     // Add a recipient
 
-            $mail2->Subject = mb_encode_mimeheader('日本語サブジェクト(sendmail)');
+            $mail2->Subject = mb_encode_mimeheader('日本語サブジェクト(sendmail) その２');
             $mail2->Encoding = '7bit';
             $mail2->CharSet ='ISO-2022-JP';
 
 $mailBody =<<< EOL
-日本語のメールのテストです。
+日本語のメールのテスト その２です。
 
 改行も問題ないと思います。
 
