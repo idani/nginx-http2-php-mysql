@@ -94,22 +94,12 @@
             $mail->Port       = 25;                                    // TCP port to connect to
         
             //Recipients
-            $mail->setFrom('from@example.com', mb_encode_mimeheader('日本語送信者名'));
-            $mail->addAddress('joe@example.net', mb_encode_mimeheader('日本語受信者名'));     // Add a recipient
-            $mail->addAddress('ellen@example.com');               // Name is optional
-            $mail->addReplyTo('info@example.com', 'Information');
-            $mail->addCC('cc@example.com');
-            $mail->addBCC('bcc@example.com');
+            $mail->setFrom('from@example.com', mb_encode_mimeheader('日本語送信者名SMTP'));
+            $mail->addAddress('smtp@example.net', mb_encode_mimeheader('日本語受信者名SMTP'));     // Add a recipient
         
             // Attachments
             // $mail->addAttachment('/var/www/html/index.php');         // Add attachments
             $mail->addAttachment('/var/www/html/img.jpg', 'img.jpg');    // Optional name
-        
-            // // Content
-            // $mail->isHTML(true);                                  // Set email format to HTML
-            // $mail->Subject = 'Here is the subject';
-            // $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-            // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
             $mail->Subject = mb_encode_mimeheader('日本語サブジェクト(SMTP)');
             $mail->Encoding = '7bit';
@@ -138,19 +128,8 @@ EOL;
         $mail2->SMTPDebug = 2;
         $mail2->isSendmail();
             //Recipients
-            $mail2->setFrom('from@example.com', mb_encode_mimeheader('日本語送信者名'));
-            $mail2->addAddress('joe@example.net', mb_encode_mimeheader('日本語受信者名'));     // Add a recipient
-            $mail2->addReplyTo('info@example.com', 'Information');
-        
-            // Attachments
-            // $mail2->addAttachment('/var/www/html/index.php');         // Add attachments
-            // $mail2->addAttachment('/var/www/html/img.jpg', 'img.jpg');    // Optional name
-        
-            // // Content
-            // $mail2->isHTML(true);                                  // Set email format to HTML
-            // $mail2->Subject = 'Here is the subject';
-            // $mail2->Body    = 'This is the HTML message body <b>in bold!</b>';
-            // $mail2->AltBody = 'This is the body in plain text for non-HTML mail clients';
+            $mail2->setFrom('from@example.com', mb_encode_mimeheader('日本語送信者名sendmail'));
+            $mail2->addAddress('sendmail@example.net', mb_encode_mimeheader('日本語受信者名sendmail'));     // Add a recipient
 
             $mail2->Subject = mb_encode_mimeheader('日本語サブジェクト(sendmail)');
             $mail2->Encoding = '7bit';
