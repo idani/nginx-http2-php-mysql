@@ -7,7 +7,7 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="title">nginx + PHP5 + MySQL + xdebug + redis + Mail3'SMTP AUTH)</h1>
+        <h1 class="title">nginx + PHP5 + MySQL + xdebug + redis + Mail3(SMTP AUTH)</h1>
         <img src="/img.jpg" alt="" class="thumbnail" />
 
         <?php
@@ -86,22 +86,22 @@
             $mail->SMTPDebug = 2;                                       // Enable verbose debug output
             $mail->isSMTP();                                            // Set mailer to use SMTP
             $mail->Host       = 'maildev';  // Specify main and backup SMTP servers
-            // $mail->SMTPAuth   = false;                                   // Enable SMTP authentication
-            // $mail->Username   = 'user@example.com';                     // SMTP username
-            // $mail->Password   = 'secret';                               // SMTP password
+            $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+            $mail->Username   = getenv('SMTP_USER');                     // SMTP username
+            $mail->Password   = getenv('SMTP_PASSWORD');                               // SMTP password
             $mail->SMTPSecure = false;                                  // Enable TLS encryption, `ssl` also accepted
             $mail->SMTPAutoTLS = false;
             $mail->Port       = 25;                                    // TCP port to connect to
         
             //Recipients
-            $mail->setFrom('from@example.com', mb_encode_mimeheader('日本語送信者名SMTP'));
-            $mail->addAddress('smtp@example.net', mb_encode_mimeheader('日本語受信者名SMTP'));     // Add a recipient
+            $mail->setFrom('from@example.com', mb_encode_mimeheader('日本語送信者名SMTP AUTH'));
+            $mail->addAddress('smtp@example.net', mb_encode_mimeheader('日本語受信者名SMTP AUTH'));     // Add a recipient
         
             // Attachments
             // $mail->addAttachment('/var/www/html/index.php');         // Add attachments
             $mail->addAttachment('/var/www/html/img.jpg', 'img.jpg');    // Optional name
 
-            $mail->Subject = mb_encode_mimeheader('日本語サブジェクト(SMTP)');
+            $mail->Subject = mb_encode_mimeheader('日本語サブジェクト(SMTP AUTH)');
             $mail->Encoding = '7bit';
             $mail->CharSet ='ISO-2022-JP';
 
@@ -110,7 +110,7 @@ $mailBody =<<< EOL
 
 改行も問題ないと思います。
 
-SMTPで配信しています。
+SMTP AUTHで配信しています。
 EOL;
 
             $mail->Body = mb_convert_encoding($mailBody, "JIS", "UTF-8");

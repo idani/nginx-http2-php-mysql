@@ -16,3 +16,6 @@ nginx-http2-php-mysql
 [DockerでPHP-alpineのメール配信テスト(SMTP/sendmail)環境を構築する](https://qiita.com/idani/items/e703b8810db219bd57fa)
 - Step.8) mail(SMTP/Sendmail)対応 その１
 - Step.9) mail(SMTP/Sendmail)対応 その２
+
+[Docker環境のMailDevでSMTP認証をする](https://qiita.com/idani/items/ed363e9fdc97d79d4b47)
+- Step.10) mail SMTP AUTH対応
